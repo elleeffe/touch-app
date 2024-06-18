@@ -1,17 +1,11 @@
 import classNames from 'classnames';
 
-const Slide = ({
-  slide: {title, content, media, mediaPosition},
-  onExpand,
-}: {
-  slide: SlideType;
-  onExpand: () => void;
-}) => {
+const Slide = ({slide: {title, content, media}}: {slide: SlideType}) => {
   return (
     <div
       className={classNames([
         'w-full h-full flex px-[4vw] pt-[4vh] pb-[16vh]',
-        mediaPosition === 'bottom' && 'flex-col',
+        media.length === 2 && 'flex-col',
       ])}
     >
       <div className="w-3/5 pr-[4vw]">
@@ -20,7 +14,7 @@ const Slide = ({
       </div>
       <div
         className={classNames([
-          mediaPosition === 'bottom'
+          media.length === 2
             ? 'flex flex-1 gap-[1vw] mt-[2vh]'
             : 'h-full w-2/5',
         ])}

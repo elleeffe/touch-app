@@ -1,6 +1,7 @@
+type Step = 'slide' | 'touch';
+
 type SlideType = {
   title: string;
   content: string;
-  media: string[];
-  mediaPosition: 'bottom' | 'left';
+  media: [string] | [string, string];
 };

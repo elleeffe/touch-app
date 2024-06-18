@@ -1,43 +1,50 @@
 import {useState} from 'react';
-
-import {Swiper, SwiperSlide} from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import Pagination from './components/Pagination';
 import {slides} from './config/slides';
-import texture from './assets/images/texture.svg';
-import Slide from './components/Slide';
+import TouchArea from './screens/TouchArea';
+import Slider from './screens/Slider';
+import 'swiper/css';
+import Images from './components/Images';
 
 function App() {
-  const [slide, setSlide] = useState<SlideType>();
+  const [step, setStep] = useState<Step>('slide');
+  const [slide, setSlide] = useState<SlideType>(slides[0]);
+  const [secondImage, setSecondImage] = useState<string>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="h-screen w-screen flex flex-col">
-      <div className="header">
-        <img src={texture} alt="texture" className="img-left" />
-        <p className="title">
-          <strong className="uppercase">Masterclass immersiva: </strong>
-          Dall’infiammazione alla gestione del paziente con DMR E RVO
-        </p>
-        <img src={texture} alt="texture" className="img-right" />
-      </div>
-      <Swiper
-        slidesPerView={1}
-        navigation
-        pagination={{clickable: true}}
-        className="w-full flex-1"
-        simulateTouch={false}
-      >
-        {slides.map((el, i) => (
-          <SwiperSlide key={`slide-${i}`}>
-            <Slide slide={el} onExpand={() => setSlide(el)} />
-          </SwiperSlide>
-        ))}
-        <Pagination />
-      </Swiper>
-      <div className="footer" />
-    </div>
+    <>
+      {step === 'slide' ? (
+        <Slider
+          initialIndex={slides.findIndex((el) => el.title === slide.title)}
+          mediaCount={slide.media.length}
+          onChangeSlide={(slide) => setSlide(slide)}
+          onSelectSlide={() => {
+            setStep('touch');
+            if (slide.media.length === 2) {
+              setSecondImage(slide.media[1]);
+            }
+          }}
+        />
+      ) : (
+        <TouchArea
+          leftImage={slide.media[0]}
+          rightImage={secondImage}
+          onClose={() => {
+            setStep('slide');
+            setSecondImage(undefined);
+            setIsOpen(false);
+          }}
+          onChangeImage={() => setIsOpen(true)}
+        />
+      )}
+      <Images
+        isOpen={isOpen}
+        onSelect={(img) => {
+          setIsOpen(false);
+          setSecondImage(img);
+        }}
+      />
+    </>
   );
 }
 
