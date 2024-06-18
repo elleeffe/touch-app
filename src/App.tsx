@@ -6,11 +6,11 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import Pagination from './components/Pagination';
 import {slides} from './config/slides';
-import classNames from 'classnames';
 import texture from './assets/images/texture.svg';
+import Slide from './components/Slide';
 
 function App() {
-  const [slide, setSlide] = useState<Slide>();
+  const [slide, setSlide] = useState<SlideType>();
 
   return (
     <div className="h-screen w-screen flex flex-col">
@@ -26,21 +26,12 @@ function App() {
         slidesPerView={1}
         navigation
         pagination={{clickable: true}}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
         className="w-full flex-1"
+        simulateTouch={false}
       >
         {slides.map((el, i) => (
           <SwiperSlide key={`slide-${i}`}>
-            <div
-              className={classNames([
-                'w-full h-full flex px-[4vw] py-[4vh]',
-                el.mediaPosition === 'bottom' && 'flex-col',
-              ])}
-            >
-              <h1 className="text-lg">{el.title}</h1>
-              <p className="text-sm">{el.content}</p>
-            </div>
+            <Slide slide={el} onExpand={() => setSlide(el)} />
           </SwiperSlide>
         ))}
         <Pagination />

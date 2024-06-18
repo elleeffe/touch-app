@@ -1,4 +1,4 @@
-type Slide = {
+type SlideType = {
   title: string;
   content: string;
   media: string[];

@@ -3,18 +3,18 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      fontSize: {
-        sm: '1vw',
-        base: '1.5vw',
-        lg: '2vw',
-        xl: '2.5vw',
-        '2xl': '3vw',
-        '3xl': '3.5vw',
-        '4xl': '4vw',
-        '5xl': '4.5vw',
-      },
       fontFamily: {
         gotham: ['Gotham', 'sans-serif'],
+      },
+      fontSize: {
+        sm: '2.5vh',
+        base: '3vh',
+        lg: '3.5vh',
+        xl: '4vh',
+        '2xl': '4.5vh',
+        '3xl': '5vh',
+        '4xl': '5.5vh',
+        '5xl': '6vh',
       },
       colors: {
         blue1: '#142748',

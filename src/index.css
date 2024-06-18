@@ -2,92 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Gotham Light';
+    src: local('Gotham-XLightItalic'),
+        url('./assets/fonts/Gotham-XLightItalic.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-XLightItalic.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-XLightItalic.woff') format('woff'),
+        url('./assets/fonts/Gotham-XLightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: local('Gotham-Medium'),
+        url('./assets/fonts/Gotham-Medium.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-Medium.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-Medium.woff') format('woff'),
+        url('./assets/fonts/Gotham-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: local('Gotham-LightItalic'),
+        url('./assets/fonts/Gotham-LightItalic.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-LightItalic.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-LightItalic.woff') format('woff'),
+        url('./assets/fonts/Gotham-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham Book';
+    src: local('Gotham-Book'),
+        url('./assets/fonts/Gotham-Book.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-Book.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-Book.woff') format('woff'),
+        url('./assets/fonts/Gotham-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: local('Gotham-Bold'),
+        url('./assets/fonts/Gotham-Bold.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-Bold.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-Bold.woff') format('woff'),
+        url('./assets/fonts/Gotham-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: local('Gotham-MediumItalic'),
+        url('./assets/fonts/Gotham-MediumItalic.eot') format('embedded-opentype'),
+        url('./assets/fonts/Gotham-MediumItalic.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-MediumItalic.woff') format('woff'),
+        url('./assets/fonts/Gotham-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
 @layer base {
-    @font-face {
-        font-family: 'Gotham';
-        src: url('./assets/fonts/Gotham-XLightItalic.eot');
-        src: url('./assets/fonts/Gotham-XLightItalic.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-XLightItalic.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-XLightItalic.woff') format(' woff'),
-            url('./assets/fonts/Gotham-XLightItalic.ttf') format(' truetype');
-        font-weight: 300;
-        font-style: italic;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Gotham';
-        src: url('./assets/fonts/Gotham-Medium.eot');
-        src: url('./assets/fonts/Gotham-Medium.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-Medium.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-Medium.woff') format(' woff'),
-            url('./assets/fonts/Gotham-Medium.ttf') format(' truetype');
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Gotham';
-        src: url('./assets/fonts/Gotham-LightItalic.eot');
-        src: url('./assets/fonts/Gotham-LightItalic.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-LightItalic.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-LightItalic.woff') format(' woff'),
-            url('./assets/fonts/Gotham-LightItalic.ttf') format(' truetype');
-        font-weight: 300;
-        font-style: italic;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Gotham Book';
-        src: url('./assets/fonts/Gotham-Book.eot');
-        src: url('./assets/fonts/Gotham-Book.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-Book.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-Book.woff') format(' woff'),
-            url('./assets/fonts/Gotham-Book.ttf') format(' truetype');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Gotham';
-        src: url('./assets/fonts/Gotham-Bold.eot');
-        src: url('./assets/fonts/Gotham-Bold.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-Bold.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-Bold.woff') format(' woff'),
-            url('./assets/fonts/Gotham-Bold.ttf') format(' truetype');
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Gotham';
-        src: url('./assets/fonts/Gotham-MediumItalic.eot');
-        src: url('./assets/fonts/Gotham-MediumItalic.eot?#iefix') format(' embedded-opentype'),
-            url('./assets/fonts/Gotham-MediumItalic.woff2') format(' woff2'),
-            url('./assets/fonts/Gotham-MediumItalic.woff') format(' woff'),
-            url('./assets/fonts/Gotham-MediumItalic.ttf') format(' truetype');
-        font-weight: 500;
-        font-style: italic;
-        font-display: swap;
+    * {
+        box-sizing: border-box;
+        @apply m-0 p-0 font-gotham text-blue1;
     }
 }
 
 @layer utilities {
-    * {
-        box-sizing: border-box;
-        @apply m-0 p-0 font-gotham;
-    }
-
     .header {
         @apply flex justify-center items-center bg-blue2 relative;
     }
 
     .title {
-        @apply text-base text-center text-white px-[4vw] py-[3vh]
+        @apply relative z-10 text-sm text-center text-white px-[4vw] py-[3vh];
     }
 
     .img-left {
