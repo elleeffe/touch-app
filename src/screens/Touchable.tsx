@@ -1,71 +1,14 @@
 import classNames from 'classnames';
 import {useEffect, useRef} from 'react';
-import QuickPinchZoom, {
-  make2dTransformValue,
-  make3dTransformValue,
-  hasTranslate3DSupport,
-} from 'react-quick-pinch-zoom';
 
 import {useSpring, animated} from '@react-spring/web';
 import {createUseGesture, dragAction, pinchAction} from '@use-gesture/react';
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-const use3DTransform = hasTranslate3DSupport() && !isSafari;
-
-const makeTransformValue = use3DTransform
-  ? make3dTransformValue
-  : make2dTransformValue;
-
 type Props = {isFull: boolean; imgSrc: string};
-
-const Touchable = ({isFull, imgSrc}: Props) => {
-  const ref = useRef<HTMLImageElement>(null);
-  const onUpdate = ({x, y, scale}: {x: number; y: number; scale: number}) => {
-    if (ref.current) {
-      const value = makeTransformValue({x, y, scale});
-
-      ref.current.style.setProperty('transform', value);
-    }
-  };
-
-  const toggleWillChange = () => {
-    if (ref.current) {
-      requestAnimationFrame(() => {
-        ref.current!.style.setProperty('will-change', 'auto');
-
-        requestAnimationFrame(() => {
-          ref.current!.style.setProperty('will-change', 'transform');
-        });
-      });
-    }
-  };
-
-  return (
-    <div
-      className={classNames([
-        'h-full rounded-[2vh] overflow-hidden',
-        isFull ? 'w-full' : 'w-1/2',
-      ])}
-    >
-      <QuickPinchZoom
-        containerProps={{className: 'h-full'}}
-        onZoomEnd={toggleWillChange}
-        onDragEnd={toggleWillChange}
-        onUpdate={onUpdate}
-        tapZoomFactor={0.5}
-      >
-        <img ref={ref} alt="" src={imgSrc} />
-      </QuickPinchZoom>
-    </div>
-  );
-};
-
-export default Touchable;
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
-export const Touchable2 = ({isFull, imgSrc}: Props) => {
+export const Touchable = ({isFull, imgSrc}: Props) => {
   const [style, api] = useSpring(() => ({
     x: 0,
     y: 0,
@@ -138,3 +81,5 @@ export const Touchable2 = ({isFull, imgSrc}: Props) => {
     </div>
   );
 };
+
+export default Touchable;

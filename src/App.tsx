@@ -15,7 +15,10 @@ function App() {
 
   const handleStart = () => {
     if (ref.current) {
-      ref.current.requestFullscreen().then(() => setStep('slide'));
+      ref.current
+        .requestFullscreen()
+        .then(() => setStep('slide'))
+        .catch(() => alert('not supported'));
     }
   };
 
