@@ -32,6 +32,7 @@ const Slider = ({
         simulateTouch={false}
         onSlideChange={({activeIndex}) => onChangeSlide(slides[activeIndex])}
         initialSlide={initialIndex}
+        allowTouchMove={false}
       >
         {slides.map((el, i) => (
           <SwiperSlide key={`slide-${i}`}>
