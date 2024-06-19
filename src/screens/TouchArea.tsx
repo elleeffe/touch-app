@@ -1,6 +1,6 @@
 import close from '../assets/images/close.svg';
 import change from '../assets/images/change.svg';
-import classNames from 'classnames';
+import Touchable from './Touchable';
 
 const TouchArea = ({
   leftImage,
@@ -27,19 +27,8 @@ const TouchArea = ({
       >
         <img src={change} alt="change" className="w-[2vh]" />
       </button>
-      <div
-        className={classNames([
-          'h-full rounded-[2vh] bg-cover bg-center',
-          rightImage ? 'w-1/2' : 'w-full',
-        ])}
-        style={{backgroundImage: `url(${leftImage})`}}
-      ></div>
-      {rightImage && (
-        <div
-          className="w-1/2 h-full rounded-[2vh] bg-cover bg-center"
-          style={{backgroundImage: `url(${rightImage})`}}
-        ></div>
-      )}
+      <Touchable isFull={rightImage === undefined} imgSrc={leftImage} />
+      {rightImage && <Touchable isFull={false} imgSrc={rightImage} />}
     </div>
   );
 };
