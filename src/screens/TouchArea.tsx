@@ -1,6 +1,6 @@
 import close from '../assets/images/close.svg';
 import change from '../assets/images/change.svg';
-import Touchable from './Touchable';
+import Touchable, {Touchable2} from './Touchable';
 
 const TouchArea = ({
   leftImage,
@@ -27,8 +27,8 @@ const TouchArea = ({
       >
         <img src={change} alt="change" className="w-[2vh]" />
       </button>
-      <Touchable isFull={rightImage === undefined} imgSrc={leftImage} />
-      {rightImage && <Touchable isFull={false} imgSrc={rightImage} />}
+      <Touchable2 isFull={rightImage === undefined} imgSrc={leftImage} />
+      {rightImage && <Touchable2 isFull={false} imgSrc={rightImage} />}
     </div>
   );
 };
