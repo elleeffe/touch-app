@@ -4,7 +4,7 @@ const Slide = ({slide: {title, content, media}}: {slide: SlideType}) => {
   return (
     <div
       className={classNames([
-        'w-full h-full flex px-[4vw] pt-[4vh] pb-[16vh]',
+        'w-full h-full flex px-[4vw] pt-[4vh] pb-[16vh] bg-white',
         media.length === 2 && 'flex-col',
       ])}
     >

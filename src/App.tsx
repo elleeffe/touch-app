@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <div ref={ref} className="bg-white">
+    <div ref={ref} className="bg-blue4">
       {step === undefined && (
         <div className="flex justify-center items-center w-screen h-screen">
           <button
@@ -65,6 +65,7 @@ function App() {
           setIsOpen(false);
           setSecondImage(img);
         }}
+        onClose={() => setIsOpen(false)}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import {useEffect, useRef} from 'react';
-
+import reset from '../assets/images/change.svg';
 import {useSpring, animated} from '@react-spring/web';
 import {createUseGesture, dragAction, pinchAction} from '@use-gesture/react';
 
@@ -16,6 +16,14 @@ export const Touchable = ({isFull, imgSrc}: Props) => {
     rotateZ: 0,
   }));
   const ref = useRef<HTMLDivElement>(null);
+
+  const onReset = () =>
+    api.start({
+      x: 0,
+      y: 0,
+      scale: 1,
+      rotateZ: 0,
+    });
 
   useGesture(
     {
@@ -69,10 +77,16 @@ export const Touchable = ({isFull, imgSrc}: Props) => {
   return (
     <div
       className={classNames([
-        'h-full rounded-[2vh] overflow-hidden',
+        'h-full rounded-[2vh] overflow-hidden relative bg-blue4',
         isFull ? 'w-full' : 'w-1/2',
       ])}
     >
+      <button
+        className="absolute top-[1vh] right-[1vh] bg-white p-[2vh] rounded-[2vh] z-10"
+        onClick={onReset}
+      >
+        <img src={reset} alt="reset" className="w-[2vh]" />
+      </button>
       <animated.div
         className="bg-cover bg-center touch-none select-none will-change-transform w-full h-full"
         ref={ref}

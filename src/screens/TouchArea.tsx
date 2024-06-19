@@ -1,5 +1,5 @@
 import close from '../assets/images/close.svg';
-import change from '../assets/images/change.svg';
+import change from '../assets/images/image.svg';
 import Touchable from './Touchable';
 
 const TouchArea = ({
@@ -22,7 +22,7 @@ const TouchArea = ({
         <img src={close} alt="close" className="w-[2vh]" />
       </button>
       <button
-        className="absolute top-[2vh] right-[2vh] bg-white p-[2vh] rounded-[2vh] z-10"
+        className="absolute top-[2vh] right-[9vh] bg-white p-[2vh] rounded-[2vh] z-10"
         onClick={onChangeImage}
       >
         <img src={change} alt="change" className="w-[2vh]" />

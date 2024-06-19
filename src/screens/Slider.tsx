@@ -27,7 +27,6 @@ const Slider = ({
       </div>
       <Swiper
         slidesPerView={1}
-        navigation
         pagination={{clickable: true}}
         className="w-full flex-1"
         simulateTouch={false}
