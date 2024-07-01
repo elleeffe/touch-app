@@ -21,8 +21,8 @@ const Slide = ({slide: {title, content, media}}: {slide: SlideType}) => {
       >
         {media.map((m, i) => (
           <div
-            style={{backgroundImage: `url(${m})`}}
-            key={`media-${i}`}
+            style={{backgroundImage: `url(${m.src})`}}
+            key={m.id}
             className="w-full h-full bg-cover bg-center rounded-[2vw]"
           />
         ))}

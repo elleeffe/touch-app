@@ -1,14 +1,14 @@
 import classNames from 'classnames';
-import {useEffect, useRef} from 'react';
+import {PropsWithChildren, useEffect, useRef} from 'react';
 import reset from '../assets/images/change.svg';
 import {useSpring, animated} from '@react-spring/web';
 import {createUseGesture, dragAction, pinchAction} from '@use-gesture/react';
 
-type Props = {isFull: boolean; imgSrc: string};
+type Props = PropsWithChildren<{isFull: boolean; imgSrc: string}>;
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
-export const Touchable = ({isFull, imgSrc}: Props) => {
+export const Touchable = ({isFull, imgSrc, children}: Props) => {
   const [style, api] = useSpring(() => ({
     x: 0,
     y: 0,
@@ -81,6 +81,7 @@ export const Touchable = ({isFull, imgSrc}: Props) => {
         isFull ? 'w-full' : 'w-1/2',
       ])}
     >
+      {children}
       <button
         className="absolute top-[1vh] right-[1vh] bg-white p-[2vh] rounded-[2vh] z-10"
         onClick={onReset}

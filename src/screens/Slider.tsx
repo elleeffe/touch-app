@@ -3,6 +3,8 @@ import Pagination from '../components/Pagination';
 import texture from '../assets/images/texture.svg';
 import Slide from '../components/Slide';
 import {slides} from '../config/slides';
+import zoomIn from '../assets/images/zoom-in.svg';
+import slideCompare from '../assets/images/slide-compare.svg';
 
 const Slider = ({
   mediaCount,
@@ -39,7 +41,24 @@ const Slider = ({
             <Slide slide={el} />
           </SwiperSlide>
         ))}
-        <Pagination onSelect={onSelectSlide} mediaCount={mediaCount} />
+        <Pagination>
+          <button
+            className="text-base text-white flex items-center gap-[1vw] bg-blue2 rounded-[1vw] px-[1.5vw] py-[1.5vh]"
+            onClick={onSelectSlide}
+          >
+            {mediaCount === 1 ? (
+              <>
+                Apri immagine
+                <img src={zoomIn} alt="" className="h-[3vh]" />
+              </>
+            ) : (
+              <>
+                Confronta immagini
+                <img src={slideCompare} alt="" className="h-[3vh]" />
+              </>
+            )}
+          </button>
+        </Pagination>
       </Swiper>
       <div className="footer" />
     </div>

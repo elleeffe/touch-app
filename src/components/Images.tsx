@@ -1,25 +1,24 @@
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {slides} from '../config/slides';
 import {FreeMode} from 'swiper/modules';
 import classNames from 'classnames';
 import close from '../assets/images/close.svg';
 
-const Images = ({
-  isOpen,
-  onSelect,
-  onClose,
-}: {
+type Props = {
   isOpen: boolean;
-  onSelect: (img: string) => void;
+  onSelect: (img: Media) => void;
   onClose: () => void;
-}) => {
-  const elements = slides.map(({media}) => media).flat();
+  position: Position;
+  images: Media[];
+};
 
+const Images = ({isOpen, onSelect, onClose, position, images}: Props) => {
   return (
     <div
       className={classNames([
-        'w-[50vw] h-screen fixed top-0 right-0 bg-white z-20 ease-in-out',
-        isOpen === false && 'translate-x-full',
+        'w-[50vw] h-screen fixed top-0 bg-white z-20 ease-in-out',
+        isOpen === false && position === 'left' && '-translate-x-full',
+        isOpen === false && position === 'right' && 'translate-x-full',
+        position === 'right' ? 'right-0' : 'left-0',
       ])}
     >
       <button
@@ -37,14 +36,14 @@ const Images = ({
         modules={[FreeMode]}
         slidesPerView={'auto'}
       >
-        {elements.map((el, i) => (
+        {images.map((el, i) => (
           <SwiperSlide
-            key={`image-slide-${i}`}
+            key={`image-slide-${i}-${position}`}
             className="flex items-center justify-center w-full h-[40vh] px-[20vh] mt-[1vh]"
           >
             <div
-              style={{backgroundImage: `url(${el})`}}
-              key={`media-${i}`}
+              style={{backgroundImage: `url(${el.src})`}}
+              key={`menu-${el.id}`}
               className="w-full h-full bg-cover bg-center rounded-[2vw]"
               onClick={() => onSelect(el)}
             />

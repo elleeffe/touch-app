@@ -1,29 +1,33 @@
-import {useEffect, useRef, useState} from 'react';
 import {slides} from './config/slides';
 import TouchArea from './screens/TouchArea';
 import Slider from './screens/Slider';
 import 'swiper/css';
 import Images from './components/Images';
+import useApp from './hooks/useApp';
 
 function App() {
-  const [step, setStep] = useState<Step>();
-  const [slide, setSlide] = useState<SlideType>(slides[0]);
-  const [secondImage, setSecondImage] = useState<string>();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleStart = () => {
-    if (ref.current) {
-      ref.current
-        .requestFullscreen()
-        .then(() => setStep('slide'))
-        .catch(() => alert('not supported'));
-    }
-  };
+  const {
+    wrapRef,
+    handleStart,
+    step,
+    slide,
+    handleChangeSlide,
+    handleSelectSlide,
+    leftImage,
+    setLeftImage,
+    rightImage,
+    setRightImage,
+    handleClose,
+    menuLeftOpened,
+    setMenuLeftOpened,
+    menuRightOpened,
+    setMenuRightOpened,
+    handleImage,
+    images,
+  } = useApp();
 
   return (
-    <div ref={ref} className="bg-blue4">
+    <div ref={wrapRef} className="bg-blue4">
       {step === undefined && (
         <div className="flex justify-center items-center w-screen h-screen">
           <button
@@ -38,34 +42,38 @@ function App() {
         <Slider
           initialIndex={slides.findIndex((el) => el.title === slide.title)}
           mediaCount={slide.media.length}
-          onChangeSlide={(slide) => setSlide(slide)}
-          onSelectSlide={() => {
-            setStep('touch');
-            if (slide.media.length === 2) {
-              setSecondImage(slide.media[1]);
-            }
-          }}
+          onChangeSlide={handleChangeSlide}
+          onSelectSlide={handleSelectSlide}
         />
       )}
       {step === 'touch' && (
         <TouchArea
-          leftImage={slide.media[0]}
-          rightImage={secondImage}
-          onClose={() => {
-            setStep('slide');
-            setSecondImage(undefined);
-            setIsOpen(false);
+          rightImage={rightImage}
+          leftImage={leftImage}
+          onClose={handleClose}
+          onChangeLeft={() => setMenuLeftOpened(true)}
+          onChangeRight={() => setMenuRightOpened(true)}
+          onExpand={(media) => {
+            setLeftImage(media);
+            setRightImage(undefined);
           }}
-          onChangeImage={() => setIsOpen(true)}
         />
       )}
       <Images
-        isOpen={isOpen}
-        onSelect={(img) => {
-          setIsOpen(false);
-          setSecondImage(img);
-        }}
-        onClose={() => setIsOpen(false)}
+        key="right"
+        position="right"
+        isOpen={menuRightOpened}
+        onSelect={(img) => handleImage('right', img)}
+        onClose={() => setMenuRightOpened(false)}
+        images={images}
+      />
+      <Images
+        key="left"
+        position="left"
+        isOpen={menuLeftOpened}
+        onSelect={(img) => handleImage('left', img)}
+        onClose={() => setMenuLeftOpened(false)}
+        images={images}
       />
     </div>
   );
